@@ -21,7 +21,6 @@
 import os
 import sys
 
-
 class Daemon(object):
     def __init__(self, stdin='/dev/null',
                  stdout='/dev/null', stderr='/dev/null'):
@@ -39,6 +38,7 @@ class Daemon(object):
             sys.stderr.write("First fork failed: %d (%s)\n" % (err.errno,
                                                                err.strerror))
             sys.exit(1)
+            
         # decouple from parent environment
         os.chdir("/")
         os.setsid()
@@ -67,7 +67,7 @@ class Daemon(object):
         """
         Start  the daemon
         """
-
+        
         self.daemonize()
         self.run(*args)
 
